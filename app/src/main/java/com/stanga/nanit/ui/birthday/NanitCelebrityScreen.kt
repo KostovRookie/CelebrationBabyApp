@@ -18,12 +18,14 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -56,6 +58,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.stanga.nanit.R
 import com.stanga.nanit.domain.CalculateAgeTextUseCase
 import com.stanga.nanit.domain.GetNumberDrawableUseCase
@@ -163,16 +166,39 @@ fun NanitCelebrityScreen(
                     isLandscape -> 140.dp
                     else -> 240.dp
                 }
+
                 if (state.pictureUri != null) {
-                    AsyncImage(
-                        model = state.pictureUri,
-                        contentDescription = stringResource(R.string.baby_picture),
-                        contentScale = ContentScale.Crop,
+                    Box(
                         modifier = Modifier
                             .size(profileImageSize)
                             .clip(CircleShape)
-                            .background(Color.White.copy(alpha = 0.5f))
-                    )
+                            .background(Color.White.copy(alpha = 0.5f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        var imageLoading by remember { mutableStateOf(true) }
+
+                        if (imageLoading) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(32.dp),
+                                color = colorPrimary,
+                                strokeWidth = 3.dp
+                            )
+                        }
+
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(state.pictureUri)
+                                .crossfade(true)
+                                .listener(
+                                    onSuccess = { _, _ -> imageLoading = false },
+                                    onError = { _, _ -> imageLoading = false }
+                                )
+                                .build(),
+                            contentDescription = stringResource(R.string.baby_picture),
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.matchParentSize()
+                        )
+                    }
                 } else {
                     Image(
                         painter = painterResource(id = selectedTheme.placeholderBabyRes),
@@ -190,7 +216,7 @@ fun NanitCelebrityScreen(
                         onClick = { showDialog = true },
                         modifier = Modifier
                             .align(Alignment.TopEnd)
-                            .offset(x = (-20).dp, y = (22).dp)
+                            .offset(x = if (isLandscape.not()) (-20).dp else 0.dp, y = 22.dp)
                             .size(36.dp)
                     ) {
                         Image(
@@ -406,7 +432,7 @@ fun BirthdayScreenPreview() {
 fun BirthdayScreenTabletPreview() {
     val fakeState = BirthdayDetailsState(
         name = "Baby Georgi",
-        birthday = System.currentTimeMillis() - (5L * 30 * 24 * 60 * 60 * 1000), // 5 months ago
+        birthday = System.currentTimeMillis() - (5L * 30 * 24 * 60 * 60 * 1000),
         pictureUri = null
     )
 

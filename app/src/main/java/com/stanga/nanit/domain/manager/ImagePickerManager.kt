@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
+import android.widget.Toast
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -51,7 +51,9 @@ class ImagePickerManager(
             contract = ActivityResultContracts.RequestPermission()
         ) { isGranted ->
             if (isGranted) {
-                launchCameraPicker()
+                launchTakePicture()
+            } else {
+                Toast.makeText(context, "Camera permission required!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -61,20 +63,26 @@ class ImagePickerManager(
     }
 
     fun launchCameraPicker() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q || ContextCompat.checkSelfPermission(
+        if (ContextCompat.checkSelfPermission(
                 context,
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            val file = createImageFile(context)
-            tempCameraImageUri = FileProvider.getUriForFile(
-                context,
-                "${context.packageName}.provider",
-                file
-            )
-            takePictureLauncher.launch(tempCameraImageUri ?: Uri.EMPTY)
+            launchTakePicture()
         } else {
             cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+    }
+
+    private fun launchTakePicture() {
+        val file = createImageFile(context)
+        tempCameraImageUri = FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.provider",
+            file
+        )
+        tempCameraImageUri?.let { safeUri ->
+            takePictureLauncher.launch(safeUri)
         }
     }
 

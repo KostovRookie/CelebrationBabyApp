@@ -134,7 +134,19 @@ fun AddBirthdayScreen(
                     .size(160.dp),
                 contentAlignment = Alignment.Center
             ) {
-                state.pictureUri?.let { nonNullUri ->
+                if (state.pictureUri == null) {
+
+                    Image(
+                        painter = painterResource(id = selectedTheme.placeholderBabyRes),
+                        contentDescription = stringResource(R.string.baby_placeholder),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(160.dp)
+                            .clip(CircleShape)
+                            .background(Color.White.copy(alpha = 0.5f))
+                    )
+                } else {
+
                     Box(
                         modifier = Modifier
                             .size(160.dp)
@@ -154,7 +166,7 @@ fun AddBirthdayScreen(
 
                         AsyncImage(
                             model = ImageRequest.Builder(LocalContext.current)
-                                .data(File(nonNullUri))
+                                .data(File(state.pictureUri))
                                 .crossfade(true)
                                 .listener(
                                     onSuccess = { _, _ -> imageLoading = false },
@@ -168,12 +180,10 @@ fun AddBirthdayScreen(
                     }
                 }
 
+
                 IconButton(
                     onClick = { showDialog = true },
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .background(Color.White, CircleShape)
-                        .size(40.dp)
+                    modifier = Modifier.align(Alignment.TopEnd)
                 ) {
                     Image(
                         painter = painterResource(id = selectedTheme.addPhotoRes),

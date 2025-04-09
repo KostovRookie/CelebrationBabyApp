@@ -46,8 +46,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.ui.graphics) // Latest Compose version
-
+    implementation(libs.ui.graphics)
 
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
@@ -58,38 +57,35 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.mockk)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Compose
     implementation(libs.ui)
     implementation(libs.material3)
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
 
-    // Navigation for Compose
     implementation(libs.androidx.navigation.compose)
 
-    // Room with KSP
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler) // ✅ Important: using ksp instead of kapt
+    ksp(libs.androidx.room.compiler)
 
-    // Coroutine
     implementation(libs.kotlinx.coroutines.android)
 
-    // Coil (optional for images later)
     implementation(libs.coil.compose)
 
     implementation(libs.koin.android)
 
-// Koin for Jetpack Compose
     implementation(libs.koin.androidx.compose)
 
     implementation (libs.capturable)
 
     implementation(libs.androidx.datastore.preferences)
-
-
-// Koin for ViewModel
+    testImplementation(kotlin("test"))
 }
