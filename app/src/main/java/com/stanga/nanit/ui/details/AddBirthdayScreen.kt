@@ -154,7 +154,7 @@ fun AddBirthdayScreen(
 
                         AsyncImage(
                             model = ImageRequest.Builder(LocalContext.current)
-                                .data(File(nonNullUri)) // ✅ now it's NON-NULL
+                                .data(File(nonNullUri))
                                 .crossfade(true)
                                 .listener(
                                     onSuccess = { _, _ -> imageLoading = false },

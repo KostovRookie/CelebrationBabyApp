@@ -3,7 +3,7 @@ package com.stanga.nanit.ui.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stanga.nanit.data.DatabaseDao
-import com.stanga.nanit.data.KidEntity
+import com.stanga.nanit.data.BirthdayEntity
 import com.stanga.nanit.domain.manager.DataStoreManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -74,7 +74,7 @@ class BirthdayViewModel(
 
     private fun saveKid() {
         viewModelScope.launch {
-            val kid = KidEntity(
+            val kid = BirthdayEntity(
                 name = _state.value.name,
                 birthday = _state.value.birthday ?: 0L,
                 pictureUri = _state.value.pictureUri
