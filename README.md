@@ -1,6 +1,6 @@
 # Celebration Baby App
 
-A beautiful Android app to **capture**, **save**, and **share** your baby's special birthday moments
+A beautiful Android app to **capture**, **save**, and **share** your kid's special birthday moments
 
 ---
 
