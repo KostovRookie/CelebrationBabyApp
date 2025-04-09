@@ -34,11 +34,12 @@ A beautiful Android app to **capture**, **save**, and **share** your kid's speci
 ##  Screenshots
 
 <p align="center">
-  <img src="screenshots/screen1.png" alt="Details Screen" width="300" />
-  <img src="screenshots/screen2.png" alt="Birthday Screen" width="300" />
-  <img src="screenshots/screen3.png" alt="Share Birthday" width="300" />
-  <img src="screenshots/screen4.png" alt="Share Birthday" width="300" />
-  <img src="screenshots/screen6.png" alt="Share Birthday" width="300" />
+  
+  <img src="https://github.com/KostovRookie/CelebrationBabyApp/blob/master/screen1.png" alt="Details Screen" width="300" />
+  <img src="https://github.com/KostovRookie/CelebrationBabyApp/blob/master/screen2.png" alt="Birthday Screen" width="600" />
+  <img src="https://github.com/KostovRookie/CelebrationBabyApp/blob/master/screen3.png" alt="Birthday Screen" width="300" />
+  <img src="https://github.com/KostovRookie/CelebrationBabyApp/blob/master/screen4.png" alt="Birthday Screen" width="300" />
+  <img src="https://github.com/KostovRookie/CelebrationBabyApp/blob/master/screen6.png" alt="Birthday Screen" width="300" />
 </p>
 
 
