@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Nanit</string>
+    <string name="today_is">TODAY %1$s IS</string>
+    <string name="share_the_news">Share the news</string>
+    <string name="share">Share</string>
+    <string name="close">Close</string>
+    <string name="choose_image_source">Choose Image Source</string>
+    <string name="pick_gallery_or_photo">Pick from gallery or take a new photo</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="background">Background</string>
+    <string name="baby_picture">Baby Picture</string>
+    <string name="baby_placeholder">Baby Placeholder</string>
+    <string name="change_picture">Change Picture</string>
+    <string name="nanit_logo">Nanit Logo</string>
+    <string name="failed_capture_screen">Failed to capture screen</string>
+    <string name="error_capturing_screen">Error capturing screen</string>
+
+    <!-- Details Screen -->
+    <string name="add_photo">Add Photo</string>
+    <string name="name_label">Name</string>
+    <string name="pick_birthday">Pick Birthday</string>
+    <string name="show_birthday_screen">Show Birthday Screen</string>
+
+    <!-- Dialog -->
+    <string name="choose_source">Choose Source</string>
+    <string name="pick_image_or_photo">Pick an image from gallery or take a new photo?</string>
+</resources>
